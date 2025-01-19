@@ -3,6 +3,8 @@ import Button from "../utils/Button";
 
 export default function Navbar() {
     const [openMenu, setOpenMenu] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
     const menuRef = useRef(null);
 
     const handleClickOutside = (e) => {
@@ -14,17 +16,27 @@ export default function Navbar() {
     console.log(openMenu);
 
     useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 10);
+        };
+
+        window.addEventListener("scroll", handleScroll);
         document.addEventListener("click", handleClickOutside);
 
         return () => {
             document.removeEventListener("click", handleClickOutside);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
     return (
-        <div className="w-full p-5">
+        <div
+            className={` w-full p-5 sticky top-0 left-0  transition-shadow duration-300 bg-white z-50 ${
+                isScrolled ? "shadow-md" : ""
+            }`}
+        >
             <div
-                className="container mx-auto flex items-center justify-between relative"
+                className="continer mx-auto px-4 md:px-8 lg:px-24 flex items-center justify-between relative"
                 ref={menuRef}
             >
                 <div className="navbar__brand">
@@ -32,14 +44,19 @@ export default function Navbar() {
                 </div>
                 <div
                     className={`${
-                        openMenu ? "top-[100%] left-0" : "-top-[500px]"
-                    } absolute md:static w-full md:w-auto p-5 md:p-0 bg-white border md:border-none border-slate-400 rounded-md shadow md:shadow-none shadow-slate-800 mt-2 md:mt-0 transition-transform duration-300`}
+                        openMenu ? "top-[100%]" : "-top-[500px]"
+                    } absolute  left-0 md:static w-full md:w-auto p-5 md:p-0 bg-white border md:border-none border-slate-400 rounded-md shadow md:shadow-none shadow-slate-800 mt-8 md:mt-0 transition-all duration-300`}
                 >
-                    <ul className="flex flex-col md:flex-row gap-5 lg:gap-10 items-center justify-center">
+                    <ul className="flex flex-col md:flex-row gap-5 lg:gap-10  justify-center">
                         <li className="nav-link active">Home</li>
                         <li className="nav-link">Feature</li>
                         <li className="nav-link">About us</li>
                         <li className="nav-link">Support</li>
+                        <li className="w-full md:hidden">
+                            <Button variant={"secondary"} className={"w-full"}>
+                                <i className="fa-regular fa-user"></i> Sign In
+                            </Button>
+                        </li>
                     </ul>
                 </div>
                 <div className="flex gap-2">
@@ -49,9 +66,17 @@ export default function Navbar() {
                         onClick={() => setOpenMenu(!openMenu)}
                         className={"md:hidden"}
                     >
-                        <i className="fa-regular fa-bars"></i>
+                        <i
+                            className={`fa-regular fa-${
+                                openMenu ? "xmark" : "bars"
+                            }`}
+                        ></i>
                     </Button>
-                    <Button variant={"secondary"} size="sm">
+                    <Button
+                        variant={"secondary"}
+                        size="sm"
+                        className={"hidden md:inline-flex"}
+                    >
                         <i className="fa-regular fa-user"></i> Sign In
                     </Button>
                 </div>

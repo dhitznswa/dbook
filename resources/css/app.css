@@ -2,13 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
 @layer utilities {
     .nav-link {
-        @apply relative  p-2 after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-0 
-        after:h-0.5 after:bg-blue-500 after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full;
+        @apply relative cursor-pointer border-b border-slate-300 md:border-none p-2 after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:w-0 after:h-0.5 after:bg-blue-500 after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full;
     }
 
     .nav-link.active {
-        @apply border-b-2 border-blue-500 font-semibold after:w-0;
+        @apply font-semibold text-blue-500;
+    }
+    .bg-square-lists {
+        background-image: url("/image/square-lists.svg");
+        background-position: center;
     }
 }
