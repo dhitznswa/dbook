@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Book;
+use App\Models\Comment;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,9 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Book::factory(10)->recycle(User::factory(5)->create())->create();
+        Comment::factory(50)->recycle(Book::factory(10)->recycle(User::factory(5)->create())->create())->create();
     }
 }

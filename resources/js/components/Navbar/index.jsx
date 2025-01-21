@@ -13,8 +13,6 @@ export default function Navbar() {
         }
     };
 
-    console.log(openMenu);
-
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 10);
