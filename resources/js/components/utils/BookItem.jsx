@@ -21,8 +21,8 @@ export default function BookItem({ cover, book }) {
                             <div className="text-xs w-2/3 tracking-wide line-clamp-1">
                                 {book.publisher.name}
                             </div>
-                            <div className="w-1/3 text-end text-xs font-bold text-blue-500">
-                                <i className="fa-light fa-messages "></i>{" "}
+                            <div className="w-1/3 text-end text-xs font-bold">
+                                <i className="fa-solid fa-messages "></i>{" "}
                                 <span>{Object.keys(book.comment).length}</span>
                             </div>
                         </div>

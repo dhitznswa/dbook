@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Button from "../utils/Button";
+import { Link } from "@inertiajs/react";
 
 export default function Navbar() {
     const [openMenu, setOpenMenu] = useState(false);
@@ -46,10 +47,18 @@ export default function Navbar() {
                     } absolute  left-0 md:static w-full md:w-auto p-5 md:p-0 bg-white border md:border-none border-slate-400 rounded-md shadow md:shadow-none shadow-slate-800 mt-8 md:mt-0 transition-all duration-300`}
                 >
                     <ul className="flex flex-col md:flex-row gap-5 lg:gap-10  justify-center">
-                        <li className="nav-link active">Home</li>
-                        <li className="nav-link">Feature</li>
-                        <li className="nav-link">About us</li>
-                        <li className="nav-link">Support</li>
+                        <li className="nav-link active">
+                            <Link href="/">Home</Link>
+                        </li>
+                        <li className="nav-link">
+                            <Link href="/book">Books</Link>
+                        </li>
+                        <li className="nav-link">
+                            <Link href="">About</Link>
+                        </li>
+                        <li className="nav-link">
+                            <Link href="">Support</Link>
+                        </li>
                         <li className="w-full md:hidden">
                             <Button variant={"secondary"} className={"w-full"}>
                                 <i className="fa-regular fa-user"></i> Sign In
