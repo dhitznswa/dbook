@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import Button from "../utils/Button";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
 export default function Navbar() {
     const [openMenu, setOpenMenu] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+
+    const { AppName } = usePage().props;
 
     const menuRef = useRef(null);
 
@@ -39,7 +41,7 @@ export default function Navbar() {
                 ref={menuRef}
             >
                 <div className="navbar__brand">
-                    <h2 className="text-2xl font-bold">dBOOK</h2>
+                    <h2 className="text-2xl font-bold uppercase">{AppName}</h2>
                 </div>
                 <div
                     className={`${

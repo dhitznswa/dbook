@@ -2,13 +2,13 @@ import { Link } from "@inertiajs/react";
 import React from "react";
 import BookItem from "../utils/BookItem";
 
-export default function PopularBookSection({ books }) {
+export default function BookSection({ books, title, link }) {
     return (
         <>
             <section className="w-full min-h-[500px] py-8">
                 <h2 className="text-xl font-bold w-fit group">
-                    <Link className="flex items-center gap-2 ">
-                        Popular Books{" "}
+                    <Link className="flex items-center gap-2 " href={link}>
+                        {title}{" "}
                         <span className="group-hover:ml-2 transition-all duration-300">
                             <i className="fa-regular fa-arrow-right"></i>
                         </span>
